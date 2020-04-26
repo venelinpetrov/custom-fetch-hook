@@ -2,10 +2,9 @@ import React from 'react';
 import { useLazyFetch } from '../hooks/useLazyFetch';
 
 export const LazyDataFetcher = () => {
-  const [fetch, {loading, error, data}] = useLazyFetch({
-    url: 'some_url',
-    pollingInterval: 0,
-  });
+const [fetch, {loading, error, data}] = useLazyFetch({
+  url: 'some_url',
+});
 
   if (loading) {
     return <div>Loading...</div>;
