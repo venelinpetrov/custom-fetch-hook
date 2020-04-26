@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { fetch } from '../services/FetchService';
 
 export const useFetch = ({ url='', pollingInterval=0 }) => {
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ export const useFetch = ({ url='', pollingInterval=0 }) => {
       });
   };
 
-  const refetch = () => doFetch()
+  const refetch = () => doFetch();
 
   useEffect(() => {
     doFetch();
@@ -39,17 +40,3 @@ export const useFetch = ({ url='', pollingInterval=0 }) => {
     refetch,
   }
 };
-
-function fetch() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve([
-        { id: 1, name: Math.random() },
-        { id: 2, name: Math.random() },
-      ]);
-    }, 2000);
-    // setTimeout(() => {
-    //     reject('There was an error loaing the data!');
-    // }, 2000);
-  });
-}
