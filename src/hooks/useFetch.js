@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-export const useFetch = url => {
+export const useFetch = ({ url='', pollingInterval=0 }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState();
-
-  useEffect(() => {
+  const doFetch = () => {
+    setLoading(true);
     fetch()
       .then(res => {
         setData(res);
@@ -16,12 +16,27 @@ export const useFetch = url => {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  const refetch = () => doFetch()
+
+  useEffect(() => {
+    doFetch();
+
+    if (pollingInterval) {
+      const id = setInterval(() => {
+        doFetch();
+      }, pollingInterval);
+
+      return () => clearInterval(id);
+    }
   }, []);
 
   return {
     loading,
     error,
     data,
+    refetch,
   }
 };
 
@@ -29,8 +44,8 @@ function fetch() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve([
-        { id: 1, name: 'Alice' },
-        { id: 2, name: 'Bob' },
+        { id: 1, name: Math.random() },
+        { id: 2, name: Math.random() },
       ]);
     }, 2000);
     // setTimeout(() => {
