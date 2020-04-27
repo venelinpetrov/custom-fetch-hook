@@ -1,6 +1,6 @@
 ## Fetch utilities for data-driven react apps
 
-Inspired by [Apollo GraphQL](https://www.apollographql.com/docs/react/v3.0-beta/data/queries/) client. The terminology is exactly the same except, insted of "useQuery" I use "useFetch".
+Inspired by [Apollo GraphQL](https://www.apollographql.com/docs/react/v3.0-beta/data/queries/) client. The terminology is exactly the same except, insted of "useQuery" I use "useFetch". You can also check [zeit/swr](https://github.com/zeit/swr)
 
 In data-driven applications, it is the data that is in charge of everything (hence *data-driven*). So it will be beneficial your data fetching APIs to provide some tools to actually work with this data, keeping your components free of fetch logic and making it easy to update their state based on the data fetch status.
 
